@@ -4,16 +4,14 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * This class provides the service of converting language codes to their names.
  */
 public class LanguageCodeConverter {
 
-    // TODO Task: pick appropriate instance variables to store the data necessary for this class
+    List<String[]> langCode = new ArrayList<>();
 
     /**
      * Default constructor which will load the language codes from "language-codes.txt"
@@ -34,8 +32,13 @@ public class LanguageCodeConverter {
             List<String> lines = Files.readAllLines(Paths.get(getClass()
                     .getClassLoader().getResource(filename).toURI()));
 
-            // TODO Task: use lines to populate the instance variable
-            //           tip: you might find it convenient to create an iterator using lines.iterator()
+            Iterator<String> iterator = lines.iterator();
+            iterator.next();
+            while (iterator.hasNext()) {
+                String line = iterator.next();
+                String[] langCodeArr = line.split("\t");
+                langCode.add(langCodeArr);
+            }
 
         }
         catch (IOException | URISyntaxException ex) {
@@ -50,7 +53,11 @@ public class LanguageCodeConverter {
      * @return the name of the language corresponding to the code
      */
     public String fromLanguageCode(String code) {
-        // TODO Task: update this code to use your instance variable to return the correct value
+        for (String[] langCodeArr : langCode) {
+            if (langCodeArr[1].equals(code)) {
+                return langCodeArr[0];
+            }
+        }
         return code;
     }
 
@@ -60,7 +67,11 @@ public class LanguageCodeConverter {
      * @return the 2-letter code of the language
      */
     public String fromLanguage(String language) {
-        // TODO Task: update this code to use your instance variable to return the correct value
+        for (String[] langCodeArr : langCode) {
+            if (langCodeArr[0].equals(language)) {
+                return langCodeArr[1];
+            }
+        }
         return language;
     }
 
@@ -69,7 +80,6 @@ public class LanguageCodeConverter {
      * @return how many languages are included in this code converter.
      */
     public int getNumLanguages() {
-        // TODO Task: update this code to use your instance variable to return the correct value
-        return 0;
+        return langCode.size();
     }
 }
