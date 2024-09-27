@@ -63,7 +63,8 @@ public class Main {
 
     // Note: CheckStyle is configured so that we don't need javadoc for private methods
     private static String promptForCountry(Translator translator) {
-        List<String> countries = translator.getCountries(); //countries contains country codes
+        List<String> countries = translator.getCountries();
+        // countries contains country codes
         CountryCodeConverter converter = new CountryCodeConverter();
         List<String> countryNames = new ArrayList<>();
         for (String country : countries) {
@@ -84,7 +85,8 @@ public class Main {
 
     // Note: CheckStyle is configured so that we don't need javadoc for private methods
     private static String promptForLanguage(Translator translator, String country) {
-        List<String> languages = translator.getCountryLanguages(country); //languages contains language codes
+        List<String> languages = translator.getCountryLanguages(country);
+        // languages contains language codes
         LanguageCodeConverter converter = new LanguageCodeConverter();
         List<String> languageNames = new ArrayList<>();
         for (String language : languages) {

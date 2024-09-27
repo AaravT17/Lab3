@@ -4,14 +4,16 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * This class provides the service of converting country codes to their names.
  */
 public class CountryCodeConverter {
 
-    List<String[]> countryCode = new ArrayList<>();
+    private List<String[]> countryCode = new ArrayList<>();
 
     /**
      * Default constructor which will load the country codes from "country-codes.txt"

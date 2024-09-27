@@ -4,7 +4,11 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -15,7 +19,7 @@ import org.json.JSONObject;
  */
 public class JSONTranslator implements Translator {
 
-    Map<String, Map<String, String>> countriesLanguages = new HashMap<>();
+    private Map<String, Map<String, String>> countriesLanguages = new HashMap<>();
 
     /**
      * Constructs a JSONTranslator using data from the sample.json resources file.
@@ -39,12 +43,12 @@ public class JSONTranslator implements Translator {
 
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject country = jsonArray.getJSONObject(i);
-                String countryCode = country.getString("alpha3");
-                Map<String, String> translations = new HashMap<>();
                 Set<String> languages = country.keySet();
                 languages.remove("id");
                 languages.remove("alpha2");
+                String countryCode = country.getString("alpha3");
                 languages.remove("alpha3");
+                Map<String, String> translations = new HashMap<>();
                 List<String> langList = new ArrayList<>(languages);
                 for (String s : langList) {
                     translations.put(s, country.getString(s));

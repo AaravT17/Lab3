@@ -4,14 +4,16 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * This class provides the service of converting language codes to their names.
  */
 public class LanguageCodeConverter {
 
-    List<String[]> langCode = new ArrayList<>();
+    private List<String[]> langCode = new ArrayList<>();
 
     /**
      * Default constructor which will load the language codes from "language-codes.txt"
